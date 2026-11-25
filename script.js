@@ -1,5 +1,6 @@
 const container = document.querySelector(".container");
-let currentGrid = 16
+let currentGrid = 16;
+let opacity = 0.1;
 
 function createGrid(currentGrid) {
     let dimension = (960 / currentGrid) + "px";
@@ -10,10 +11,16 @@ function createGrid(currentGrid) {
         box.style.height = dimension;
         container.appendChild(box);
         box.addEventListener("mouseover", (tile) => {
-            const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-            tile.target.style.backgroundColor = `#${randomColor}`;
+            tile.target.style.backgroundColor = `${getRandomColor()}`;
         });
     }
+}
+
+function getRandomColor() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgba(${r}, ${g}, ${b})`;
 }
 
 createGrid(currentGrid);
