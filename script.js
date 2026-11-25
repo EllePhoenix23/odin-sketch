@@ -8,6 +8,9 @@ function createGrid(currentGrid) {
         box.classList.add("box");
         box.style.width = dimension;
         box.style.height = dimension;
+        box.addEventListener("mouseover", (tile) => {
+        tile.target.style.backgroundColor = "red";
+        });
         container.appendChild(box);
     }
 }
