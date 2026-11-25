@@ -1,13 +1,18 @@
 const container = document.querySelector(".container");
 let currentGrid = 16
 
-for (i = 0; i < currentGrid**2; i++) {
-    const box = document.createElement("div");
-    box.classList.add("box");
-    box.style.width = `60px`;
-    box.style.height = `60px`;
-    container.appendChild(box);
+function createGrid(currentGrid) {
+    let dimension = (960 / currentGrid) + "px";
+    for (i = 0; i < currentGrid**2; i++) {
+        const box = document.createElement("div");
+        box.classList.add("box");
+        box.style.width = dimension;
+        box.style.height = dimension;
+        container.appendChild(box);
+    }
 }
+
+createGrid(currentGrid);
 
 let newGrid = document.querySelector("button");
 newGrid.addEventListener("click", () => {
@@ -16,6 +21,8 @@ newGrid.addEventListener("click", () => {
     if (!(Number.isInteger(userGrid) && userGrid > 0 && userGrid <= 100)) {
         alert("Invalid input, please try again. Valid inputs include any number 1 - 100.");
     } else {
-        console.log("This part of the script is working.");
+        container.replaceChildren();
+        let currentGrid = userGrid;
+        createGrid(currentGrid);
     }
 });
